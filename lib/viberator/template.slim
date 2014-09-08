@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title = chat.name
+    link rel="stylesheet" href=stylesheet("viberator.css")
+    link rel="stylesheet" href=stylesheet("baguetteBox.css")
+    script src=javascript("jquery.js")
+    script src=javascript("timeago.js")
+    script src=javascript("baguetteBox.js")
+    javascript:
+      jQuery(document).ready(function() {
+        baguetteBox.run(".baguette");
+        jQuery("time.time").timeago();
+      });
+  body
+    - for event in chat.events
+      .event
+        span.avatar
+          img src=asset(event.author.avatar)
+        span.author = event.author.name
+        time.time datetime="#{event.timestamp.utc.iso8601}"
+          = event.timestamp.strftime "%d.%m.%Y %H:%M"
+        span.message
+          - if event.sticker?
+            img src=asset(event.image)
+          - elsif event.photo?
+            span.baguette
+              a href=asset(event.image) data-caption="#{event.text}"
+                img src=asset(event.image_thumb)
+          - else
+            = event.text
