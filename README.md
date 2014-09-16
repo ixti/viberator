@@ -1,6 +1,6 @@
 # Viberator
 
-Viberator (prononce as in `vibe` and then `rator`) is a small utility to
+Viberator (prononce as in `vibe` and `rator`) is a small utility to
 generate HTML dums of your ViberPC chat logs.
 
 ## Installation
